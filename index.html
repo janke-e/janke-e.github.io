@@ -24,7 +24,11 @@
     <div id="scenario"></div>
     <script language="javascript" type="text/javascript">
         function func1() {
-            var strs = document.getElementById("input_message").value.split("\n");
+            var strs = document.getElementById("input_message").value;
+            // うまく表示するように文字変換を行う
+            strs = strs.replace('…','・');
+
+            var strs = strs.split("\n");
 
             var selif_start_char = "「"
             var selif_end_char = "」"
