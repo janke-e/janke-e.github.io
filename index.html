@@ -17,12 +17,15 @@
             ===============================================*/
             @media screen and (max-width:640px){
                 #scenario {
-                    height: 60%;
-                    width: 80%;
+                    height: 50%;
+                    width: 70%;
                     overflow-x: scroll;
                     writing-mode: vertical-rl;
                     text-orientation: upright;
                     background-color:whitesmoke;
+                }
+                #tabl{
+                    height: 140px  
                 }
             }
             #number {
@@ -89,7 +92,7 @@
 
             input_message = '<table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333"><tr>'+
                 '<th height = "20" bgcolor="#4682b4">番号</th>'+
-                '<th height = "100" bgcolor="#4682b4">キャラ名</th>'+
+                '<th class="tabl" bgcolor="#4682b4">キャラ名</th>'+
                 '<th bgcolor="#4682b4" >セリフ</th></tr>';
 
             var character_name_and_color = new Array()
