@@ -2,17 +2,32 @@
     <head>
         <meta charset="utf-8" />
         <style>
-          #scenario {
-            height: 90%;
-            width: 90%;
-            overflow-x: scroll;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            background-color:whitesmoke;
-          }
-          #number {
+            @media screen and (min-width: 769px){
+                #scenario {
+                    height: 80%;
+                    width: 90%;
+                    overflow-x: scroll;
+                    writing-mode: vertical-rl;
+                    text-orientation: upright;
+                    background-color:whitesmoke;
+                }
+            }
+            /*===============================================
+            画面の横幅が640pxまで（スマホ用）
+            ===============================================*/
+            @media screen and (max-width:640px){
+                #scenario {
+                    height: 60%;
+                    width: 80%;
+                    overflow-x: scroll;
+                    writing-mode: vertical-rl;
+                    text-orientation: upright;
+                    background-color:whitesmoke;
+                }
+            }
+            #number {
             writing-mode: horizontal-tb;
-          }
+            }
         </style>
         <title>台本</title>
     </head>
@@ -27,6 +42,8 @@
             var strs = document.getElementById("input_message").value;
             // うまく表示するように文字変換を行う
             strs = strs.split('…').join('・');
+            strs = strs.split('…').join('・');
+            
 
             var strs = strs.split("\n");
 
@@ -55,12 +72,12 @@
                     continue;
                 }
                 if(s.indexOf(selif_end_char) != -1){
-                    selif = selif + s.substr(0,s.indexOf(selif_end_char));
+                    selif = selif + "<br>" + s.substr(0,s.indexOf(selif_end_char));
                     analyzed_scenario_data.push([character_name,selif]);
                     in_parentheses = false;
                     continue;
                 }else{
-                    selif = selif + s;
+                    selif = selif + "<br>" + s;
                 }
             }
             
@@ -89,7 +106,7 @@
                 name_color = COLOR[character_name_and_color.indexOf(name)];
 
                 push_str = '<td width = "60" >' + number 
-                    + '</td><td style="color:' + name_color + '"><font size="4">' + name 
+                    + '</td><td style="color:' + name_color + '"><font size="5">' + name 
                     + '</font></td><td><font size="3">' + selif + "</font></td></tr>";
                 input_message = input_message + push_str;
             }
