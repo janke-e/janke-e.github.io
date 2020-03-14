@@ -26,7 +26,7 @@
         function func1() {
             var strs = document.getElementById("input_message").value;
             // うまく表示するように文字変換を行う
-            strs = strs.replace('…','・');
+            strs = strs.replace('/…/g','・');
 
             var strs = strs.split("\n");
 
@@ -89,8 +89,8 @@
                 name_color = COLOR[character_name_and_color.indexOf(name)];
 
                 push_str = '<td width = "60" >' + number 
-                    + '</td><td style="color:' + name_color + '">' + name 
-                    + "</td><td>" + selif + "</td></tr>";
+                    + '</td><td style="color:' + name_color + '"><font size="3">' + name 
+                    + '</font></td><td><font size="3">' + selif + "</font></td></tr>";
                 input_message = input_message + push_str;
             }
             input_message = input_message + "</table>";
