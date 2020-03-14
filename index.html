@@ -8,24 +8,20 @@
             overflow-x: scroll;
             writing-mode: vertical-rl;
             text-orientation: upright;
-            background-color:cadetblue;
+            background-color:whitesmoke;
           }
           #number {
             writing-mode: horizontal-tb;
           }
         </style>
-        
         <title>台本</title>
     </head>
-
 <body>
     <form id="form1" action="#">
         <textarea name="kanso" id="input_message" rows="4" cols="40">ここに↓</textarea>
         <input type="button" onclick="func1()" value="縦書きにする">
     </form>
-
     <div id="scenario"></div>
-
     <script language="javascript" type="text/javascript">
         function func1() {
             var strs = document.getElementById("input_message").value.split("\n");
@@ -63,22 +59,37 @@
                     selif = selif + s;
                 }
             }
+            
+            const COLOR = 
+            ["#CC0000","#00CC00","#0000CC","#CCCC00","00CCCC","CC00CC",
+                    "#7CCC00","#CC7C00","#CC007C","#CCC07C","#CC0000","#00CC00","#0000CC","#CCCC00","00CCCC","CC00CC",
+                    "#7CCC00","#CC7C00","#CC007C","#CCC07C","#CC0000","#00CC00","#0000CC","#CCCC00","00CCCC","CC00CC",
+                    "#7CCC00","#CC7C00","#CC007C","#CCC07C"]
 
             input_message = '<table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333"><tr>'+
-                '<th height = "20" bgcolor="#EE0000"><font color="#FFFFFF">番号</font></th>'+
-                '<th height = "100" bgcolor="#EE0000"><font color="#FFFFFF">キャラ名</font></th>'+
-                '<th bgcolor="#EE0000" ><font color="#FFFFFF">セリフ</font></th></tr>';
+                '<th height = "20" bgcolor="#4682b4">番号</th>'+
+                '<th height = "100" bgcolor="#4682b4">キャラ名</th>'+
+                '<th bgcolor="#4682b4" >セリフ</th></tr>';
 
+            var character_name_and_color = new Array()
 
             for(var i = 0;i < analyzed_scenario_data.length;i++){
-                number = "00000".substr(0,3 - i.toString().length) + i.toString()
-                name = analyzed_scenario_data[i][0]
-                selif = analyzed_scenario_data[i][1]
+                number = "00000".substr(0,3 - (i+1).toString().length) + (i+1).toString();
+                name = analyzed_scenario_data[i][0];
+                selif = analyzed_scenario_data[i][1];
 
-                push_str = '<td class ="number"  width = 60 >' + number + "</td><td>" + name + "</td><td>" + selif + "</td></tr>"
-                input_message = input_message + push_str
+                name_color = ""
+                if(character_name_and_color.indexOf(name) == -1){
+                    character_name_and_color.push(name);
+                }
+                name_color = COLOR[character_name_and_color.indexOf(name)];
+
+                push_str = '<td width = "60" >' + number 
+                    + '</td><td style="color:' + name_color + '">' + name 
+                    + "</td><td>" + selif + "</td></tr>";
+                input_message = input_message + push_str;
             }
-            input_message = input_message + "</table>"
+            input_message = input_message + "</table>";
 
             document.getElementById("scenario").innerHTML = input_message;
         }
