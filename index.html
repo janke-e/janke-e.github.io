@@ -44,6 +44,14 @@
     </form>
     <div id="scenario"></div>
     <script language="javascript" type="text/javascript">
+        function onClick(name){
+              var up_names = document.getElementsByName("__" ++ name);
+              var obj = document.getElementsByName("__" + name);
+              for (var elm of obj){
+                  obj.style.backgroundColor = '#333333';  //背景色を赤にする
+              }
+        }
+        
         function func1() {
             var strs = document.getElementById("input_message").value;
             // うまく表示するように文字変換を行う
@@ -119,7 +127,7 @@
                 
                 push_str = '<td width = "30%" >' + number 
                     + '</td><td style="color:' + name_color + '"><font size="5">' + name 
-                    + '</font></td><td><font size="4">' + selif + "</font></td></tr>";
+                    + '</font></td><td name = "__' + character_name_and_color.indexOf(name) + '"><font size="4">' + selif + "</font></td></tr>";
                 input_message = input_message + push_str;
             }
             for(var i = 0;i < character_name_and_color.length;i++){
