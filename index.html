@@ -45,10 +45,9 @@
     <div id="scenario"></div>
     <script language="javascript" type="text/javascript">
         function onClick(name){
-              var up_names = document.getElementsByName("__" ++ name);
               var obj = document.getElementsByName("__" + name);
               for (var elm of obj){
-                  obj.style.backgroundColor = '#333333';  //背景色を赤にする
+                  elm.style.backgroundColor = '#333333';  
               }
         }
         
@@ -131,7 +130,7 @@
                 input_message = input_message + push_str;
             }
             for(var i = 0;i < character_name_and_color.length;i++){
-                input_message_ = input_message_ + '<td width = "30%" >XXX' 
+                input_message_ = input_message_ + '<td width = "30%" ><input type="button" value="強調" onclick="onClick(' + str(i) + ');" />' 
                     + '</td><td style="color:' + COLOR[i] + '"><font size="">' + character_name_and_color[i] +'のセリフ数'
                     + '</font></td><td><font size="4">' + selif_count[i] + "</font></td></tr>";;
             }
