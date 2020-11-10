@@ -114,18 +114,17 @@
                     character_name_and_color.push(name);
                 }
                 name_color = COLOR[character_name_and_color.indexOf(name)];
-                selif_count[charactor_name_and_color.indexOf(name)]+=1
+                selif_count[character_name_and_color.indexOf(name)]+=1
                 
                 push_str = '<td width = "30%" >' + number 
                     + '</td><td style="color:' + name_color + '"><font size="5">' + name 
                     + '</font></td><td><font size="4">' + selif + "</font></td></tr>";
                 input_message = input_message + push_str;
             }
-            const iterator = character_name_and_color.keys();
-            for (const key of iterator) {
+            for(var i = 0;i < character_name_and_color.length;i++){
                 input_message_ = input_message_ + '<td width = "30%" >XXX' 
-                    + '</td><td style="color:' + name_color + '"><font size="5">' + key +'のセリフ数'
-                    + '</font></td><td><font size="4">' + selif_count[charactor_name_and_color.indexOf(key)] + "</font></td></tr>";;
+                    + '</td><td style="color:' + COLOR[i] + '"><font size="5">' + character_name_and_color[i] +'のセリフ数'
+                    + '</font></td><td><font size="4">' + selif_count[i] + "</font></td></tr>";;
             }
             input_message = input_message_ + input_message + "</table>";
 
