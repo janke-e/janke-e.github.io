@@ -39,7 +39,7 @@
     </head>
 <body>
     <form id="form1" action="#">
-        <textarea name="kanso" id="input_message" rows="2" cols="40">ここに↓</textarea>
+        <textarea name="kanso" id="input_message" rows="2" cols="40"></textarea>
         <input type="button" onclick="func1()" value="縦書きにする">
     </form>
     <div id="scenario"></div>
@@ -47,9 +47,14 @@
         function onClick(name){
               var obj = document.getElementsByName("__" + name);
               for (var elm of obj){
+                  if (elm.style.backgroundColor == '#e0ffff'){
+                      elm.style.backgroundColor = whitesmoke;  
+                      elm.style.borderColor = '#000000';  
+                      document.getElementsByName(name)[0].value="強調"
+                  }
                   elm.style.backgroundColor = '#e0ffff';  
                   elm.style.borderColor = '#1e90ff';  
-                  
+                  document.getElementsByName(name)[0].value="戻す"
               }
         }
         
@@ -127,12 +132,12 @@
                 selif_count[character_name_and_color.indexOf(name)]+=1
                 
                 push_str = '<td width = "30%" >' + number 
-                    + '</td><td style="color:' + name_color + '"><font size="5">' + name 
+                    + '</td><td name = "__' + character_name_and_color.indexOf(name) + '" style="color:' + name_color + '"><font size="5">' + name 
                     + '</font></td><td name = "__' + character_name_and_color.indexOf(name) + '"><font size="4">' + selif + "</font></td></tr>";
                 input_message = input_message + push_str;
             }
             for(var i = 0;i < character_name_and_color.length;i++){
-                input_message_ = input_message_ + '<td width = "30%" ><input type="button" value="強調" onclick="onClick(' + "'" + i + "'" + ');" />' 
+                input_message_ = input_message_ + '<td width = "30%" ><input type="button" name="' + i + '" value="強調" onclick="onClick(' + "'" + i + "'" + ');" />' 
                     + '</td><td style="color:' + COLOR[i] + '"><font size="">' + character_name_and_color[i] +'のセリフ数'
                     + '</font></td><td><font size="4">' + selif_count[i] + "</font></td></tr>";;
             }
